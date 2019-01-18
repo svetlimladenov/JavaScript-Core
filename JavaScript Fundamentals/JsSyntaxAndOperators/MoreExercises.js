@@ -22,6 +22,7 @@ function DailyCalorieIntake(input, activeFactor) {
     }else{
         calories *= 1.90;
     }
+
     console.log(Math.round(calories));
 }
 
@@ -139,5 +140,20 @@ function ConvertToCoins(amountOfMoney, coinValues) {
 
     console.log(coins.join(", "));
 }
+
+function GetGreatestCommonDivisor(firstNumber, secondNumber){
+    let smallerNumber = Math.min(firstNumber, secondNumber);
+
+    let commonDivisors = [];
+
+    for(i=1; i<=smallerNumber; i++){
+        if(firstNumber % i == 0 && secondNumber % i == 0){
+            commonDivisors.push(i);
+        }
+    }
+
+    console.log(Math.max.apply(Math, commonDivisors));
+}
+
 
 ConvertToCoins(123, [5, 50, 2, 1, 10]);
