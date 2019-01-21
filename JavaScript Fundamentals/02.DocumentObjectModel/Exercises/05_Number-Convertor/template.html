@@ -2,22 +2,22 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="template.css">
-    <title>Number Convertor</title>
-    <script src="./solution.js" ></script>
+	<link rel="stylesheet" href="template.css">
+	<title>Number convertor</title>
+	<script src="./solution.js" ></script>
 </head>
 
 <body>
 <div id="container">
-    <nav id="navigation">
-        <div id="navigation-text">
-            <p id="lecture-name">Intro to DOM</p>
-            <p id="problem-name">Number convertor</p>
-        </div>
-        <img id="logo-img" src="images/logo.png" alt="logo">
-    </nav>
-    <main id="main">
-        <div id="exercise">
+	<nav id="navigation">
+		<div id="navigation-text">
+			<p id="lecture-name">Intro to DOM</p>
+			<p id="problem-name">Number convertor</p>
+		</div>
+		<img id="logo-img" src="images/logo.png" alt="logo">
+	</nav>
+	<main id="main">
+		<div id="exercise">
 			<div id="menus">
 				<label for="input">Number</label>
 				<input type="number" id="input" /><br>
@@ -27,7 +27,7 @@
 				</select>
 				<label for="selectMenuTo">To</label>
 				<select id="selectMenuTo">
-					<option selected value=""></option>
+					<option value="" ></option>
 				</select>
 				<button>Convert it</button>
 			</div>
@@ -35,10 +35,13 @@
 				<label for="result">Result</label>
 				<input type="text" name="output" id="result" disabled readonly />
 			</div>
-        </div>
-        <img id="softUni-person-img" src="images/wizard.png" alt="softUni-person">
-    </main>
-    
+		</div>
+		<img id="softUni-person-img" src="images/wizard.png" alt="softUni-person">
+	</main>
+	<footer id="footer">
+		<p id="footer-text">Check your solution here: <span id="check-judge">Put the judge link here...</span>
+		</p>
+	</footer>
 </div>
 <script>
 	solve();
