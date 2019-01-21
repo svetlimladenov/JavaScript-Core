@@ -1,23 +1,25 @@
 function solve() {
     let spans = document.querySelectorAll("span");
-    document.querySelectorAll("#player1Div img").forEach(card => {
+    Array.from(document.querySelectorAll("#player1Div img")).forEach(card => {
         card.addEventListener("click", () => {
             card.src = "images/whiteCard.jpg";
             spans[0].textContent = card.getAttribute("name");
             if (spans[2].textContent)
             {
                 Fight(spans[0],spans[2]);
+                card.removeEventListener('click');
             }
         })
     });
 
-    document.querySelectorAll("#player2Div img").forEach(card => {
+    Array.from(document.querySelectorAll("#player2Div img")).forEach(card => {
         card.addEventListener("click", () => {
             card.src = "images/whiteCard.jpg";
             spans[2].textContent = card.getAttribute("name");
             if (spans[0].textContent)
             {
                 Fight(spans[0],spans[2]);
+                card.removeEventListener('click');
             }
         })
     });

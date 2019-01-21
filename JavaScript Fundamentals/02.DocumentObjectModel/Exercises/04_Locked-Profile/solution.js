@@ -1,5 +1,5 @@
 function solve() {
-   document.querySelectorAll(".profile").forEach(profile => {
+   Array.from(document.querySelectorAll(".profile")).forEach(profile => {
        let inputs = profile.querySelectorAll("input");
        let lockRadioButton = inputs[0];
        let unlockRadioButton = inputs[1];

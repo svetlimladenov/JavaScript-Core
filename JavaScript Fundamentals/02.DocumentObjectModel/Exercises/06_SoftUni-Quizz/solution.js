@@ -4,7 +4,7 @@ function solve() {
     let result = 0;
     let correctAnswers = ["2013", "Pesho", "Nakov"];
 	let allQuestions = document.querySelectorAll("section");
-	document.querySelectorAll("section").forEach(question => {
+	Array.from(document.querySelectorAll("section")).forEach(question => {
 	    let button = question.querySelector("button");
 	    button.addEventListener('click', function () {
 	        if (button.textContent === "Next question") {
