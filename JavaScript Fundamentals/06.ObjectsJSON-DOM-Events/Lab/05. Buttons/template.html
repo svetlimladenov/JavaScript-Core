@@ -22,9 +22,9 @@
                     <label>Value</label>
                     <input type="text" id="value">
                     <div class="center">
-                        <input type="submit" class="button" onclick="" value="Add">  
-                        <input type="submit" class="button" onclick="" value="Get Value">
-                        <input type="submit" class="button" onclick="" value="Get Whole Object">
+                        <input type="submit" class="button" onclick="addProperty()" value="Add">
+                        <input type="submit" class="button" onclick="getProperty()" value="Get Value">
+                        <input type="submit" class="button" onclick="getObject()" value="Get Whole Object">
                     </div>
                 </form>
                 <label>Console</label>
@@ -44,14 +44,19 @@
           });
         });
         let obj = {};
+        let result = document.getElementById('result');
         function addProperty() {
-            // TODO: get key and value and add them to the object; display messsage
+            let keyInput = document.getElementById('key').value;
+            let valueInput = document.getElementById('value').value;
+            obj[keyInput] = valueInput;
+            result.value += 'New property added!\n';
         }
         function getProperty() {
-           // TODO: get the value by the given key and display it
+           let key = document.getElementById('key').value;
+           result.value += obj[key] + '\n';
         }
         function getObject() {
-            // TODO: stringify the object and display it
+            result.value += JSON.stringify(obj);
         }
     </script>
 </body>

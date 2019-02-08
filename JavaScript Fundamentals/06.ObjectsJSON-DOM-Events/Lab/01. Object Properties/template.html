@@ -41,7 +41,12 @@
         });
         let obj = {};
         function addProperty() {
-            // TODO
+            let objKey = document.getElementById('key').value;
+            let objValue = document.getElementById('value').value;
+
+            obj[objKey] = objValue;
+
+            document.getElementById('result').value = JSON.stringify(obj);
         }
     </script>
 </body>

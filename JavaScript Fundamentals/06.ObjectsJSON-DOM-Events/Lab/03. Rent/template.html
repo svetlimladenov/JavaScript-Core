@@ -42,7 +42,26 @@
             event.preventDefault()
         });
         function calculateRents() {
-            // TODO
+            let flatNumbers = document.getElementById('flats').value.split(', ');
+            let families = document.getElementById('families').value.split(', ');
+            let rents = document.getElementById('rents').value.split(', ');
+            let result = [];
+            flatNumbers.forEach((flat,index) => {
+                let obj = {};
+                obj['number'] = flat;
+                obj['family'] = families[index];
+                obj['rent'] = rents[index];
+                result.push(obj);
+            });
+            let resultArea = document.getElementById('result');
+            result.forEach(x => {
+                console.log(x);
+                resultArea.value += `In flat ${x.number} family ${x.family} has to pay ${x.rent}\n`;
+            });
+            let totalRent = result.reduce((a,b) => {
+               return a + Number(b.rent);
+            },0);
+            resultArea.value += 'Total rent paid: ' + totalRent;
         }
     </script>
 </body>

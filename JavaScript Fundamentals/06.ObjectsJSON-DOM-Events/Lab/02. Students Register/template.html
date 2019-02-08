@@ -38,7 +38,21 @@
             event.preventDefault()
         });
         function addStudents() {
-            // TODO
+            let studentsInput = document.getElementById('input').value.split('\n').filter(x => x !== '');
+            let students = studentsInput.map(line => {
+                let currentStudent = line.split(' ');
+                return {
+                    firstName : currentStudent[0],
+                    lastName : currentStudent[1],
+                    grade : parseFloat(currentStudent[2]),
+                    fullname : currentStudent[0] + ' ' + currentStudent[1],
+                }
+            });
+
+            let result = '';
+            result += 'Students are: ' + students.map(s => s.fullname).join(', ') + '\n';
+            result += 'Average grade: ' + (students.reduce((a,b) => a + b.grade,0.0 ) / students.length).toFixed(2);
+            document.getElementById('result').value = result;
         }
     </script>
 </body>
