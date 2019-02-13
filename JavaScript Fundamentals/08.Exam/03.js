@@ -1,26 +1,24 @@
-//chech for tag in tag
-//.test while false
 function solve(input) {
     let result = [];
     let regex = /^<([^ *]+?)>(.+)<\/(\1)>$/gm;
     input.forEach(x => {
         if (regex.test(x)){
-            let a = regex.exec(x);
-            let text = findInnertText(regex.exec(x))[2];
-            text = findInnertText(text);
+            regex.exec(x);
+            let text = findInnerText(regex.exec(x))[2];
+            text = findInnerText(text);
             result.push(text);
         }
     });
 
     console.log(result.join(' '));
-    function findInnertText(textInput) {
+    function findInnerText(textInput) {
         if (!regex.test(textInput))
         {
             return textInput;
         }
         regex.exec(textInput);
-        let innerText = findInnertText(regex.exec(textInput))[2];
-        return findInnertText(innerText);
+        let innerText = findInnerText(regex.exec(textInput))[2];
+        return findInnerText(innerText);
     }
 }
 
@@ -29,5 +27,4 @@ solve(['<div><p>This</p> is</div>',
     '<divs><p>valid</p></divs>',
     '<div><p>This</div></p>',
     '<div><p>is not</p><div>']
-
 );

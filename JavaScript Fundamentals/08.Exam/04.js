@@ -1,5 +1,4 @@
 function solve(obj) {
-
     let townsWithVignetteProfit = {};
     obj.forEach(x => {
         if (!townsWithVignetteProfit.hasOwnProperty(x.town))
@@ -67,7 +66,6 @@ function solve(obj) {
                 }else{
                     return 1;
                 }
-                //PITAI DALI E CASE SENSETIVE;
             }
         }
     });
@@ -113,9 +111,9 @@ function solve(obj) {
         console.log(x);
     })
 }
-solve([ { model: 'BMW', regNumber: 'B1234SM', town: 'Varna', price: 2},
-    { model: 'BMW', regNumber: 'C5959CZ', town: 'Sofia', price: 8},
-    { model: 'Tesla', regNumber: 'NIKOLA', town: 'Burgas', price: 9},
-    { model: 'BMW', regNumber: 'A3423SM', town: 'Varna', price: 3},
-    { model: 'Lada', regNumber: 'SJSCA', town: 'Sofia', price: 3} ]
-);
+solve([ { 'model': 'A', 'regNumber': 'A', 'town': 'Atown', 'price': 5},
+    { 'model': 'Z2', 'regNumber': 'Z2', 'town': 'Ztown', 'price': 9},
+    { 'model': 'C', 'regNumber': 'B1', 'town': 'Ctown', 'price': 5},
+    { 'model': 'D2', 'regNumber': 'D2', 'town': 'Dtown', 'price': 9},
+    { 'model': 'D1', 'regNumber': 'D1', 'town': 'Dtown', 'price': 9},
+    { 'model': 'Z1', 'regNumber': 'Z1', 'town': 'Ztown', 'price': 9} ]);
