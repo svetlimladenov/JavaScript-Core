@@ -1,16 +1,17 @@
-function solve(input){
+let solve2 = (function () {
     let sum = 0;
+    function add (number) {
+        sum+= number;
+        console.log(sum);
+        return add;
+    }
 
+    //this 3 rows are just for judge to work
     add.toString = function(){
         return sum;
     };
 
-    function add(){
-        sum += parseInt(arguments[0]);
-        return add;
-    }
+    return add;
+})();
 
-    return add(input);
-}
-
-console.log(solve(1)(6)(-3).toString());
+solve2(1)(4);
