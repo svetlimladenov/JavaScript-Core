@@ -14,9 +14,18 @@ pesho.sleep();
 
 let obj = {
     name : "Pepi",
+    _name : "",
     address : "Mladost",
     walk : function () {}
 };
+
+Object.defineProperty(obj,'name',{
+    get() {return this._name},
+    set(v) { this._name = v}
+});
+
+obj._name = 5;
+console.log(obj);
 
 class ClassHuman {
     constructor(name, address){
@@ -31,6 +40,7 @@ class ClassHuman {
         });
 
         //Object.freeze(this);
+        //Object.seal(this);
     }
 
     get name(){
