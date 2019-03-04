@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<acticle>
+    <ul id="towns">
+        <li>Sofia</li>
+        <li>Pleven</li>
+        <li>Varna</li>
+        <li>Plovdiv</li>
+    </ul>
+    <input type="text" id="searchText" />
+    <button onclick="search()">Search</button>
+    <div id="result"></div>
+    </article>
+</body>
+<script>
+    $("#searchText").on("keyup",search);
+    function search() {
+        const searchText = $("#searchText").val();
+        const count = $("#towns li")
+            .css("font-weight", "")
+            .filter((index,elem) => {
+                return elem.textContent.toLowerCase().indexOf(searchText) > -1;
+            })
+            .css("font-weight","bold")
+            .length;
+        $("#result").text(count.toString() + " matches found");
+    }
+
+</script>
+</html>
