@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="time" style="border:3px solid #ff0012; text-align:center; font-size:2em; margin-bottom:10px">00:00</div>
+<button id="startBtn">Start</button>
+<button id="stopBtn" disabled="true">Stop</button>
+<script>
+    window.onload = function stopWatch() {
+        let buttons = document.querySelectorAll('button');
+        let startBtn = buttons[0];
+        let endBtn = buttons[1];
+        let timer = document.getElementById('time');
+        let seconds = 0;
+        let minutes = 0;
+        let clock = `${minutes}:${seconds}`;
+        let isRunning = true;
+        startBtn.addEventListener('click', () => {
+            debugger;
+            timer.textContent = '00:00';
+            isRunning = true;
+            seconds = 0;
+            minutes = 0;
+            endBtn.disabled = false;
+            startBtn.disabled = true;
+            let startInterval = setInterval(() => {
+                if (isRunning === false){
+                    clearInterval(startInterval);
+                    return;
+                }
+                seconds++;
+                let secondsStr = seconds;
+                if (secondsStr <= 9){
+                    secondsStr = "0" + secondsStr;
+                }
+                let minutesStr = minutes;
+                if (minutesStr <= 9){
+                    minutesStr = "0" + minutesStr;
+                }
+                clock = `${minutesStr}:${secondsStr}`;
+                if (seconds === 59){
+                    seconds = -1;
+                    minutes++;
+                }
+                timer.textContent = clock;
+            },1000);
+        });
+
+        endBtn.addEventListener('click', () => {
+            isRunning = false;
+            endBtn.disabled = true;
+            startBtn.disabled = false;
+        });
+    }
+</script>
+
+</body>
+</html>

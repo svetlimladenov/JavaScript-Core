@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<table border="1" id="customers">
+    <tr><th>Name</th><th>Email</th></tr>
+    <tr><td>Eve</td><td>eve@gmail.com</td></tr>
+    <tr><td>Nick</td><td>nick@yahooo.com</td></tr>
+    <tr><td>Didi</td><td>didi@didi.net</td></tr>
+    <tr><td>Tedy</td><td>tedy@tedy.com</td></tr>
+</table>
+Email: <input type="text" name="email" />
+<button onclick="deleteByEmail()">Delete</button>
+<div id="result" />
+<script>
+    function deleteByEmail(){
+        let resultDiv = document.querySelector("#result");
+        resultDiv.textContent = '';
+        let emailInput = document.querySelector("input").value;
+        let tds = document.querySelectorAll("td");
+        if (!Array.from(tds).map(x => x.textContent).includes(emailInput)) {
+            resultDiv.textContent = 'Not found.';
+            return;
+        }
+        Array.from(tds).filter((d) => d.textContent.includes(emailInput))
+            .forEach((d) => {
+                let parent = d.parentElement.parentElement;
+                let tableRowElement = d.parentElement;
+                parent.removeChild(tableRowElement);
+            });
+    }
+</script>
+
+</body>
+</html>
