@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <input id="search-text" type="text" placeholder="Repository...">
+    <button class="btn btn-success" onclick="searchRepos()">Search</button>
+    <div id="result">
+    </div>
+</body>
+<script>
+    function searchRepos() {
+        let searchText = $('#search-text').val();
+        let url = `https://api.github.com/users/${searchText}/repos`;
+        $.get(url,function (data) {
+            data.forEach(r => {
+                let name = r.name;
+                let link = $(`<a href="https://github.com/${searchText}/${name}" target="_blank">${name}</a><br/>`);
+                $('#result').append(link);
+            });
+
+        });
+    }
+</script>
+</html>

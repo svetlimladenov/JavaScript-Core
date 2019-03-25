@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX DEMO</title>
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<button onclick="onButtonClick()">Load Repos</button>
+<div id="result"></div>
+</body>
+<script>
+    function loadSwapi() {
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200)
+                document.getElementById("result").textContent =
+                    this.responseText;
+        };
+        req.open("GET",
+            "https://swapi.co/api/people/4", true);
+        req.send();
+        // let data = JSON.parse(req.responseText);
+        // console.log(data.name);
+    }
+
+    function onButtonClick() {
+        $('#result').load('http://localhost:5000/text.html');
+    }
+</script>
+</html>
