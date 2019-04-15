@@ -1,26 +1,29 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="collapse navbar-collapse" id="navbarText">
+        {{#if isLogged}}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">All Songs</a>
+                <a class="nav-link" href="#/songs/all">All Songs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">My Songs</a>
+                <a class="nav-link " href="#/songs/my">My Songs</a>
             </li>
-        </ul>
+        </ul>   
         <ul class="navbar-nav justify-content-end">
             <li class="nav-item">
-                <a class="nav-link" href="#">Welcome, Kiril!</a>
+                <a class="nav-link" href="#/">Welcome, {{displayUsername}}!</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="#/logout">Logout</a>
             </li>
         </ul>
+        {{/if}}
         <ul class="navbar-nav mr-auto">
         </ul>
+        {{#unless isLogged}}
         <ul class="navbar-nav justify-content-end">
             <li class="nav-item">
                 <a class="nav-link" href="#/login">Login</a>
@@ -29,5 +32,6 @@
                 <a class="nav-link" href="#/register">Register</a>
             </li>
         </ul>
+        {{/unless}}
     </div>
 </nav>

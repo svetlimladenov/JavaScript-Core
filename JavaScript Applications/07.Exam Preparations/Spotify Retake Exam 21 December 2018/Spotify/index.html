@@ -16,114 +16,14 @@
   <script src="./node_modules/sammy/lib/min/plugins/sammy.handlebars-latest.min.js"></script>
   <script src="scripts/models/requester.js"></script>
   <script src="scripts/models/auth.js"></script>
-  <script src="scripts/models/teamsService.js"></script>
+  <script src="scripts/models/songs-services.js"></script>
   <script src="scripts/models/notify.js"></script>
   <script src="scripts/app.js"></script>
   <title>Spotify</title>
 </head>
 <body>
   <div id="container">
-    <section id="allSongsView">
-      <div class="background-spotify">
-        <div class="song-container">
-          <h1>All Songs</h1>
-          <a href="#">
-            <button type="button" class="btn-lg btn-block new-song-btn">Add a new song</button>
-          </a>
-          <div class="song">
-            <h5>Title: When The Sun Goes Down</h5>
-            <h5>Artist: Zeni N, The Distance, Igi</h5>
-            <img class="cover" src="https://images-na.ssl-images-amazon.com/images/I/51MGXCdrUpL._SS500.jpg" />
-            <p>Likes: 100; Listened 1500 times</p>
-            <a href="#"><button type="button" class="btn btn-danger mt-4">Remove</button></a>
-            <a href="#"><button type="button" class="btn btn-success mt-4">Listen</button></a>
-            <p>Likes: 100</p>
-            <a href="#"><button type="button" class="btn btn-primary mt-4">Like</button></a>
-          </div>
-          <div class="song">
-            <h5>Title: Insomnia 2.0 (Avicci Remix)</h5>
-            <h5>Artist: Faithless, Avicci</h5>
-            <img class="cover" src="https://static.qobuz.com/images/covers/58/22/0886445392258_600.jpg" />
-            <p>Likes: 2000; Listened 100000 times</p>
-            <a href="#"><button type="button" class="btn btn-danger mt-4">Remove</button></a>
-            <a href="#"><button type="button" class="btn btn-success mt-4">Listen</button></a>
-            <p>Likes: 2000</p>
-            <a href="#"><button type="button" class="btn btn-primary mt-4">Like</button></a>
-          </div>
-          <div class="song">
-            <h5>Title: Coffee Shop</h5>
-            <h5>Artist: Sunnery James & Ryan Marciano</h5>
-            <img class="cover" src="https://images-na.ssl-images-amazon.com/images/I/51RO-2AhZEL._SS500.jpg" />
-            <p>Likes: 1234; Listened 5000 times</p>
-            <a href="#"><button type="button" class="btn btn-danger mt-4">Remove</button></a>
-            <a href="#"><button type="button" class="btn btn-success mt-4">Listen</button></a>
-            <p>Likes: 1234</p>
-            <a href="#"><button type="button" class="btn btn-primary mt-4">Like</button></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="createSongView">
-      <div class="background-spotify">
-        <div class="song-container">
-          <h1>Create new song</h1>
-          <form action="#" method="POST">
-            <div class="form-group">
-              <label for="title" class="white-labels">Title</label>
-              <input id="title" type="text" name="title" class="form-control" placeholder="Title">
-            </div>
-            <div class="form-group">
-              <label for="artist" class="white-labels">Artist</label>
-              <input id="artist" type="text" name="artist" class="form-control" placeholder="Artist">
-            </div>
-            <div class="form-group">
-              <label for="imageURL" class="white-labels">imageURL</label>
-              <input id="imageURL" type="text" name="imageURL" class="form-control" placeholder="imageURL">
-            </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="mySongsView">
-      <div class="background-spotify">
-        <div class="song-container">
-          <h1>My Songs</h1>
-          <div class="song">
-            <h5>Title: When The Sun Goes Down</h5>
-            <h5>Artist: Zeni N, The Distance, Igi</h5>
-            <img class="cover" src="https://images-na.ssl-images-amazon.com/images/I/51MGXCdrUpL._SS500.jpg" />
-            <p>Likes: 100; Listened 1500 times</p>
-            <a href="#"><button type="button" class="btn btn-danger mt-4">Remove</button></a>
-            <a href="#"><button type="button" class="btn btn-success mt-4">Listen</button></a>
-            <p>Likes: 100</p>
-            <a href="#"><button type="button" class="btn btn-primary mt-4">Like</button></a>
-          </div>
-          <div class="song">
-            <h5>Title: Insomnia 2.0 (Avicci Remix)</h5>
-            <h5>Artist: Faithless, Avicci</h5>
-            <img class="cover" src="https://static.qobuz.com/images/covers/58/22/0886445392258_600.jpg" />
-            <p>Likes: 2000; Listened 100000 times</p>
-            <a href="#"><button type="button" class="btn btn-danger mt-4">Remove</button></a>
-            <a href="#"><button type="button" class="btn btn-success mt-4">Listen</button></a>
-            <p>Likes: 2000</p>
-            <a href="#"><button type="button" class="btn btn-primary mt-4">Like</button></a>
-          </div>
-          <div class="song">
-            <h5>Title: Coffee Shop</h5>
-            <h5>Artist: Sunnery James & Ryan Marciano</h5>
-            <img class="cover" src="https://images-na.ssl-images-amazon.com/images/I/51RO-2AhZEL._SS500.jpg" />
-            <p>Likes: 1234; Listened 5000 times</p>
-            <a href="#"><button type="button" class="btn btn-danger mt-4">Remove</button></a>
-            <a href="#"><button type="button" class="btn btn-success mt-4">Listen</button></a>
-            <p>Likes: 1234</p>
-            <a href="#"><button type="button" class="btn btn-primary mt-4">Like</button></a>
-          </div>
-        </div>
-      </div>
-    </section>
+    
 
 
   </div>
