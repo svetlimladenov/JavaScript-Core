@@ -1,102 +1,88 @@
 const assert = require('chai').assert;
 const SoftUniFy = require('./SoftUniFy');
 
-
-
-describe("Initialize", function () {
-    it('should work fine', function () {
-        let lib = new SoftUniFy();
-        assert.deepEqual(lib.allSongs,{});
+describe('Initialize', function () {
+    it('should initialize correct', function () {
+        let dj = new SoftUniFy();
+        assert.deepEqual(dj.allSongs, {});
     });
 });
 
-describe("Download Song", function () {
-    it('should work fine with normal input', function () {
+describe('downloadSong', function () {
+    it('should download songs', function () {
+        let dj = new SoftUniFy();
+        let result = dj.downloadSong('Ivan', 'Chujdi Usmivki', 'Izchenal kato miraj, katooo miraj..');
+        let exptected = {
+            "rate": 0,
+            "songs": [
+                "Chujdi Usmivki - Izchenal kato miraj, katooo miraj.."
+            ],
+            "votes": 0
+        };
+        assert.deepEqual(result.allSongs['Ivan'], exptected);
+    });
+    it('should download songs and have 0 rate', function () {
+        let dj = new SoftUniFy();
+        dj.downloadSong('Ivan', 'Chujdi Usmivki', 'Izchenal kato miraj, katooo miraj..');
+        assert.equal(dj.allSongs['Ivan'].rate, 0);
+    });
+});
+
+describe('playSong', function () {
+    it('should play songs', function () {
+        let dj = new SoftUniFy();
+        dj.downloadSong('Ivan', 'Chujdi Usmivki', 'Izchenal kato miraj, katooo miraj..');
+        dj.downloadSong('Toto', 'Chujdi Usmivki', 'Izchenal kato miraj, katooo miraj..');
+        let actual = dj.playSong('Chujdi Usmivki');
+        let expected = 'Ivan:\n' +
+            'Chujdi Usmivki - Izchenal kato miraj, katooo miraj..\n' +
+            'Toto:\n' +
+            'Chujdi Usmivki - Izchenal kato miraj, katooo miraj..\n';
+        assert.equal(actual, expected);
+    });
+
+    it('should not throw if invalid song', function () {
+        let dj = new SoftUniFy();
+        assert.equal(dj.playSong('song'), 'You have not downloaded a song song yet. Use SoftUniFy\'s function downloadSong() to change that!')
+    });
+});
+
+describe('songsList', function () {
+    it('should list all songs', function () {
         let sofunify = new SoftUniFy();
+
         sofunify.downloadSong('Eminem', 'Venom', 'Knock, Knock let the devil in...');
         sofunify.downloadSong('Eminem', 'Phenomenal', 'IM PHENOMENAL...');
         sofunify.downloadSong('Dub Fx', 'Light Me On Fire', 'You can call me a liar.. ');
 
-        let expected = 'Venom - Knock, Knock let the devil in...\nPhenomenal - IM PHENOMENAL...\nLight Me On Fire - You can call me a liar.. ';
-        assert.equal(sofunify.songsList,expected);
+        let actual = sofunify.songsList;
+        let expected= 'Venom - Knock, Knock let the devil in...\n' +
+            'Phenomenal - IM PHENOMENAL...\n' +
+            'Light Me On Fire - You can call me a liar.. ';
+        assert.equal(actual, expected);
     });
-    it('should ', function () {
-        
+
+    it('should show empty message', function () {
+        let sofunify = new SoftUniFy();
+        assert.equal(sofunify.songsList,`Your song list is empty`);
     });
 });
 
-describe("Play Song", function () {
-    it('should work fine with normal input', function () {
-        let sofunify = new SoftUniFy();
-        sofunify.downloadSong('Eminem', 'Venom', 'Knock, Knock let the devil in...');
-        let expected = 'Eminem:\n' +
-            'Venom - Knock, Knock let the devil in...\n';
-        assert.equal(sofunify.playSong('Venom'),expected);
-    });
-    it('should return error msg', function () {
-        let sofunify = new SoftUniFy();
-        let expected = `You have not downloaded a Gosho song yet. Use SoftUniFy's function downloadSong() to change that!`;
-        assert.equal(sofunify.playSong('Gosho'),expected);
-    });
-});
-
-
-describe("SongList", function () {
-    it('should work fine', function () {
+describe('rateSong', function () {
+    it('should sum rate', function () {
         let sofunify = new SoftUniFy();
         sofunify.downloadSong('Eminem', 'Venom', 'Knock, Knock let the devil in...');
         sofunify.downloadSong('Eminem', 'Phenomenal', 'IM PHENOMENAL...');
         sofunify.downloadSong('Dub Fx', 'Light Me On Fire', 'You can call me a liar.. ');
-        let expected = 'Venom - Knock, Knock let the devil in...\nPhenomenal - IM PHENOMENAL...\nLight Me On Fire - You can call me a liar.. ';
-        assert.equal(sofunify.songsList,expected);
+        sofunify.rateArtist('Eminem',50);
+        sofunify.rateArtist('Eminem',30);
+        let rating = sofunify.rateArtist('Eminem');
+        assert.equal(rating,40);
     });
 
-    it('should return error message', function () {
+    it('should return message if invalid artist', function () {
         let sofunify = new SoftUniFy();
-        let expected = 'Your song list is empty';
-        assert.equal(sofunify.songsList,expected);
-    });
-});
-
-describe("Initialize", function () {
-    it('should work fine', function () {
-        let lib = new SoftUniFy();
-        assert.deepEqual(lib.allSongs,{});
-    });
-});
-
-describe("Download Song", function () {
-    it('should work fine with normal input', function () {
-        let sofunify = new SoftUniFy();
-        sofunify.downloadSong('Eminem', 'Venom', 'Knock, Knock let the devil in...');
-        sofunify.downloadSong('Eminem', 'Phenomenal', 'IM PHENOMENAL...');
-        sofunify.downloadSong('Dub Fx', 'Light Me On Fire', 'You can call me a liar.. ');
-
-        let expected = 'Venom - Knock, Knock let the devil in...\nPhenomenal - IM PHENOMENAL...\nLight Me On Fire - You can call me a liar.. ';
-        assert.equal(sofunify.songsList,expected);
-    });
-});
-
-describe("Play Song", function () {
-    it('should work fine with normal input', function () {
-        let sofunify = new SoftUniFy();
-        sofunify.downloadSong('Eminem', 'Venom', 'Knock, Knock let the devil in...');
-        let expected = 'Eminem:\n' +
-            'Venom - Knock, Knock let the devil in...\n';
-        assert.equal(sofunify.playSong('Venom'),expected);
-    });
-    it('should return error msg', function () {
-        let sofunify = new SoftUniFy();
-        let expected = `You have not downloaded a Gosho song yet. Use SoftUniFy's function downloadSong() to change that!`;
-        assert.equal(sofunify.playSong('Gosho'),expected);
-    });
-});
-
-
-describe("Rate artist", function () {
-    it('should work fine', function () {
-        let sofunify = new SoftUniFy();
-        assert.equal(sofunify.rateArtist('Eminem'),'The Eminem is not on your artist list.');
-        assert.equal(sofunify.rateArtist('Eminem'),'The Eminem is not on your artist list.');
+        let rating = sofunify.rateArtist('Goshe');
+        assert.equal(rating,'The Goshe is not on your artist list.')
     });
 });

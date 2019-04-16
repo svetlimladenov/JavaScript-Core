@@ -85,20 +85,18 @@ class SoftUniFy {
     }
 }
 
-var exports = module.exports = SoftUniFy;
-
-// let sofunify = new SoftUniFy();
-// sofunify.downloadSong('Ivan','Self-Esteem', 'Happens more than i\'d like to admit');
-// sofunify.downloadSong('Ivan','YOSEMITE', 'I feem i am choosen, I am covered in gold');
+ var exports = module.exports = SoftUniFy;
 //
+// let sofunify = new SoftUniFy();
+// // sofunify.downloadSong('Ivan','Self-Esteem', 'Happens more than i\'d like to admit');
+// // sofunify.downloadSong('Ivan','YOSEMITE', 'I feem i am choosen, I am covered in gold');
+// //
 // sofunify.downloadSong('Eminem', 'Venom', 'Knock, Knock let the devil in...');
 // sofunify.downloadSong('Eminem', 'Phenomenal', 'IM PHENOMENAL...');
 // sofunify.downloadSong('Dub Fx', 'Light Me On Fire', 'You can call me a liar.. ');
 //
 //
-// let sofunify2 = new SoftUniFy();
-//
-// console.log(sofunify.rateArtist('Eminem',20));
+// console.log(sofunify.rateArtist('Eminem', 20));
 // console.log(sofunify.rateArtist('Eminem', 50));
 //
 // console.log(sofunify);
