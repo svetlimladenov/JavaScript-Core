@@ -80,7 +80,7 @@ $(() => {
             this.redirect('#/');
         });
 
-        this.get('#/movie/create', function () {
+        this.get('#/movies/create', function () {
             this.isLogged = !!sessionStorage.getItem('authtoken');
             this.loadPartials({
                 header: './templates/common/header.hbs',
@@ -90,23 +90,23 @@ $(() => {
             });
         });
 
-        this.post('#/movie/create', function (data) {
+        this.post('#/movies/create', function (data) {
             this.isLogged = !!sessionStorage.getItem('authtoken');
             let title = data.params.title;
             let imageUrl = data.params.imageUrl;
             let description = data.params.description;
             let genres = Array.from(data.params.genres.split(' '));
-            let tickets = Number(data.params.tickets);
+            let tickets = parseInt(data.params.tickets);
 
             if (title.length < 6 || description.length < 10 || isNaN(tickets)) {
                 notify.showError('Error: Invalid credentials. Please retry your request with correct credentials.');
-                data.redirect('#/movie/create');
+                data.redirect('#/movies/create');
                 return;
             }
             
             if(!imageUrl.startsWith('http://') && !imageUrl.startsWith('https://')){
                 notify.showError('Error: Invalid credentials. Please retry your request with correct credentials.');
-                data.redirect('#/movie/create');
+                data.redirect('#/movies/create');
                 return;
             }
             
@@ -114,13 +114,36 @@ $(() => {
                 .then((res) => {
                     console.log(res);
                     notify.showInfo('Movie created successfully.');
-                    data.redirect('#/');
+                    data.redirect('#/cinema');
                 }).catch(() => {
                     notify.showError('Oops something went wrong!');
                 });
         });
 
-        
+        this.get('#/cinema',async function(){
+            this.isLogged = !!sessionStorage.getItem('authtoken');
+            this.movies = await moviesService.loadMovies();
+
+            this.loadPartials({
+                header: './templates/common/header.hbs',
+                footer: './templates/common/footer.hbs',
+                movieBox : './templates/movies/movieBox.hbs',
+            }).then(function () {
+                this.partial('./templates/movies/cinema.hbs');
+            });
+        });
+
+        this.get('#/movies/my', async function(){
+            this.isLogged = !!sessionStorage.getItem('authtoken');
+            this.movies = await moviesService.loadMyMovies();
+            this.loadPartials({
+                header: './templates/common/header.hbs',
+                footer: './templates/common/footer.hbs',
+                movieBox : './templates/movies/movieBox.hbs',
+            }).then(function () {
+                this.partial('./templates/movies/cinema.hbs');
+            });
+        });
     });
 
     app.run('#/');

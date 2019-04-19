@@ -1,11 +1,17 @@
 let moviesService = (() => {
     function loadMovies() {
-        // Request teams from db
-        return requester.get('appdata', 'movies', 'kinvey');
+        // Request movies from db
+        return requester.getWithQuery('appdata', 'movies', 'kinvey','?query={}&sort={"tickets":-1}');
     }
 
     function loadMovieDetails(movieId) {
         return requester.get('appdata', 'movies/' + movieId, 'kinvey');
+    }
+
+    function loadMyMovies(){
+        let userId = sessionStorage.getItem('userId');
+        let url = `query={"_acl.creator":"${userId}"}`;
+        return requester.getWithQuery('appdata', 'movies', 'kinvey',url);
     }
 
     function edit(teamId, name, description) {
@@ -24,10 +30,10 @@ let moviesService = (() => {
             description,
             imageURL,
             genres,
-            tickets
+            tickets : Number(tickets)
         };
-
-        return requester.post('appdata', 'movies', 'kinvey', movieData);
+        
+        return requester.post('appdata', 'movies', 'kinvey',movieData);
     }
 
 
@@ -53,6 +59,7 @@ let moviesService = (() => {
     return {
         loadMovies,
         loadMovieDetails,
+        loadMyMovies,
         edit,
         createMovie,
         joinTeam,
