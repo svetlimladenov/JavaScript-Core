@@ -10,8 +10,8 @@ let moviesService = (() => {
 
     function loadMyMovies(){
         let userId = sessionStorage.getItem('userId');
-        let url = `query={"_acl.creator":"${userId}"}`;
-        return requester.getWithQuery('appdata', 'movies', 'kinvey',url);
+        let query = `query={"_acl.creator":"${userId}"}&sort={"tickets":-1}`;
+        return requester.getWithQuery('appdata', 'movies', 'kinvey',query);
     }
 
     function edit(teamId, name, description) {
@@ -36,6 +36,10 @@ let moviesService = (() => {
         return requester.post('appdata', 'movies', 'kinvey',movieData);
     }
 
+
+    function deleteMovie(movieId){
+        return requester.remove('appdata','movies/' + movieId, 'kinvey');
+    }
 
     function joinTeam(teamId) {
         let userData = {
@@ -62,6 +66,7 @@ let moviesService = (() => {
         loadMyMovies,
         edit,
         createMovie,
+        deleteMovie,
         joinTeam,
         leaveTeam
     }

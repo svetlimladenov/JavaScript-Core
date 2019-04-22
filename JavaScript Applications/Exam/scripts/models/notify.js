@@ -3,21 +3,37 @@ let notify = (() => {
     ajaxStart: () => $('#loadingBox').show(),
     ajaxStop: () => $('#loadingBox').fadeOut()
   })
-  function showInfo (message) {
-    let infoBox = $('#infoBox')
-    infoBox.find('span').text(message)
-    infoBox.fadeIn()
-    setTimeout(() => infoBox.fadeOut(), 3000)
+
+  function showInfo(message) {
+    setTimeout(() => {
+      let infoBox = $('#successBox');
+      infoBox.text(message);
+      infoBox.show();
+
+      infoBox.on('click', () => {
+        infoBox.fadeOut();
+      })
+      setTimeout(() => infoBox.fadeOut(), 2000)
+    }, 500);
+
   }
 
   function showError(message) {
-    let errorBox = $('#errorBox')
-    errorBox.find('span').text(message)
-    errorBox.fadeIn()
-    setTimeout(() => errorBox.fadeOut(), 3000)
+    setTimeout(() => {
+      let errorBox = $('#errorBox');
+      errorBox.text(message);
+      errorBox.show();
+      
+      errorBox.on('click',() => {
+        errorBox.fadeOut();
+      })
+      
+      setTimeout(() => errorBox.fadeOut(), 2000)
+    }, 500);
+
   }
 
-  function handleError (reason) {
+  function handleError(reason) {
     showError(reason.responseJSON.description)
   }
 

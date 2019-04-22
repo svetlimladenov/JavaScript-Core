@@ -1,15 +1,23 @@
-<nav>
-    <ul>
-        <li><a href="#">Home</a></li>
-        {{#if isLogged}}
-        <li><a href="#/cinema">Cinema</a></li>
-        <li><a href="#/movies/create">Add Movie</a></li>
-        <li><a href="#/movies/my">My Movies</a></li>
-        <li class="right"><a href="#/logout">Logout</a></li>
-        <li class="right">Welcome, {{displayUsername}}!</li>
-        {{else}}
-        <li class="right"><a href="#/register">Register</a></li>
-        <li class="right"><a href="#/login">Login</a></li>
-        {{/if}}
-    </ul>
-</nav>
+<header class="masthead mb-auto">
+    <div class="inner">
+        <h3 class="masthead-brand">CookUni</h3>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" href="#/">Home</a>
+            {{#if isLogged}}
+            <a class="nav-link" href="#/">Welcome, {{displayUsername}}!</a>
+            <a class="nav-link" href="#/shareRecipe">Share recipe</a>
+            <a class="nav-link" href="#/logout">Logout</a>
+            {{else}}
+            <a class="nav-link" href="#/signIn">Login</a>
+            <a class="nav-link" href="#/signUp">Register</a>
+            {{/if}}
+        </nav>
+    </div>
+</header>
+
+
+<div id="notifications">
+    <div id="successBox" class="alert alert-success" role="alert">{Success Message...}</div>
+    <div id="loadingBox" class="alert alert-info" role="alert">Loading...</div>
+    <div id="errorBox" class="alert alert-danger" role="alert">{Error Message...}</div>
+</div>

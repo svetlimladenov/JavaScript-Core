@@ -123,7 +123,7 @@ $(() => {
         this.get('#/cinema',async function(){
             this.isLogged = !!sessionStorage.getItem('authtoken');
             this.movies = await moviesService.loadMovies();
-
+            this.title = 'All Movies';
             this.loadPartials({
                 header: './templates/common/header.hbs',
                 footer: './templates/common/footer.hbs',
@@ -136,14 +136,43 @@ $(() => {
         this.get('#/movies/my', async function(){
             this.isLogged = !!sessionStorage.getItem('authtoken');
             this.movies = await moviesService.loadMyMovies();
+            this.title = 'My Movies';
             this.loadPartials({
                 header: './templates/common/header.hbs',
                 footer: './templates/common/footer.hbs',
-                movieBox : './templates/movies/movieBox.hbs',
+                movieBox : './templates/movies/my-movieBox.hbs',
             }).then(function () {
                 this.partial('./templates/movies/cinema.hbs');
             });
         });
+
+        this.get('#/movies/delete/:movieId',async function(data){
+            let id = data.params.movieId.substr(1);
+            this.id = id;
+            let movieData = await moviesService.loadMovieDetails(id);
+            this.title = movieData.title;
+            this.imageURL = movieData.imageURL;
+            this.description = movieData.description;
+            this.genres = movieData.genres.join(',');
+            this.tickets = movieData.tickets;
+            this.loadPartials({
+                header: './templates/common/header.hbs',
+                footer: './templates/common/footer.hbs',
+            }).then(function () {
+                this.partial('./templates/movies/delete-movie.hbs');
+            });
+        });
+
+        this.route('delete','#/movies/delete', function(data){
+            let id = data.params.id;
+            moviesService.deleteMovie(id)
+                .then(res => {
+                    this.redirect('#/cinema');
+                    notify.showInfo('Deleted film');
+                })
+                .catch(err => console.log(err))
+            console.log(id);
+        })
     });
 
     app.run('#/');

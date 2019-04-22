@@ -1,7 +1,7 @@
 let requester = (() => {
     const kinveyBaseUrl = "https://baas.kinvey.com/";
-    const kinveyAppKey = "kid_Syh62Ofq4";
-    const kinveyAppSecret = "0d784395ffd54a88936656de24a9493d";
+    const kinveyAppKey = "kid_HkUljNOc4";
+    const kinveyAppSecret = "6182db2b66c74a0f88883928ed3767f8";
 
     // Creates the authentication header
     function makeAuth(type) {
@@ -54,7 +54,7 @@ let requester = (() => {
     // Function to return PUT promise
     function update(module, endpoint, auth, data) {
         let req = makeRequest('PUT', module, endpoint, auth);
-        req.data = data;
+        req.data = JSON.stringify(data);
         return $.ajax(req);
     }
 
