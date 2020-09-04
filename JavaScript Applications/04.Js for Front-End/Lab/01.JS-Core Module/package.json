@@ -2,6 +2,6 @@
   "name": "js-core-module",
   "version": "1.0.0",
   "dependencies": {
-    "handlebars": "^4.1.1"
+    "handlebars": "^4.5.2"
   }
 }
